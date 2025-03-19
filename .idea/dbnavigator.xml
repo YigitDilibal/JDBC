@@ -6,7 +6,7 @@
   </component>
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
@@ -30,7 +30,9 @@
 
 select * from deposits;
 
-select distinct user_id from deposits WHERE amount between 100 AND 500;]]></console>
+select distinct user_id from deposits WHERE amount between 100 AND 500;
+
+select name from cron_schedules limit 2;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -38,8 +40,8 @@ select distinct user_id from deposits WHERE amount between 100 AND 500;]]></cons
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="13ff703b-3ec1-47fa-9f68-b5c48496e5cb" object-ref="schemas/u201212290_qaloantec/tables/users" />
       <object connection-id="13ff703b-3ec1-47fa-9f68-b5c48496e5cb" object-ref="consoles/JDBC_first" />
+      <object connection-id="13ff703b-3ec1-47fa-9f68-b5c48496e5cb" object-ref="schemas/u201212290_qaloantec/tables/users" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">

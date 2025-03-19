@@ -1,7 +1,9 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.Given;
+import manage.QueryManage;
 import org.testng.Assert;
+import utilities.JDBCReusableMethods;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ public class StepDefinition {
     Connection connection;
     Statement statement;
     ResultSet resultSet;
+    QueryManage queryManage = new QueryManage();
+    String Query;
 
 
     @Given("Database ile baglanti kurulur.")
@@ -69,9 +73,24 @@ public class StepDefinition {
         statement.close();
         connection.close();
 
+    }
+
+
+    @Given("cron_schedules SQL Query'si hazirlanir.")
+    public void cron_schedules_sql_query_si_hazirlanir() throws SQLException {
+
+        Query = queryManage.getCroneSchedulesQuery();
+        resultSet = JDBCReusableMethods.executeQuery(Query);
 
 
     }
+    @Given("cron_schedules Databaseden sonuclar dogrulanir.")
+    public void cron_schedules_databaseden_sonuclar_dogrulanir() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+
 
 
 }
