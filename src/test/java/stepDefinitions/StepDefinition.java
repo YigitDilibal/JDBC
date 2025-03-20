@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.sl.In;
 import manage.QueryManage;
 import org.testng.Assert;
 import utilities.JDBCReusableMethods;
@@ -21,6 +22,7 @@ public class StepDefinition {
     String Query;
     PreparedStatement preparedStatement;
     int row;
+    int InsertID;
 
 
     @Given("Database ile baglanti kurulur.")
@@ -137,13 +139,54 @@ public class StepDefinition {
 
     }
 
-
     @Given("\\(users) database baglantisi sonlandirilir.")
     public void users_database_baglantisi_sonlandirilir() {
 
         JDBCReusableMethods.closeConnection();
 
     }
+
+
+
+
+    @Given("insert sorgusu hazirlanir ve calistirilir.")
+    public void insert_sorgusu_hazirlanir_ve_calistirilir() throws SQLException {
+
+        Query = queryManage.getDeviceTokensInsertQuery();
+        preparedStatement = JDBCReusableMethods.getConnection().prepareStatement(Query);
+
+        InsertID = 421;
+        preparedStatement.setInt(1,InsertID);
+        preparedStatement.setInt(2,624);
+        preparedStatement.setInt(3,1);
+        preparedStatement.setString(4,"Yigit_token");
+
+        row = preparedStatement.executeUpdate();
+
+        Query = queryManage.getDeviceTokensInsertDogrulama();
+        preparedStatement = JDBCReusableMethods.getConnection().prepareStatement(Query);
+        preparedStatement.setInt(1, InsertID);
+        resultSet = preparedStatement.executeQuery();
+
+        resultSet.next();
+        System.out.println(resultSet.getString("id"));
+        assertEquals(resultSet.getInt("id"), InsertID);
+
+    }
+
+
+    @Given("sonuclari islenir.")
+    public void sonuclari_islenir() {
+
+        System.out.println("etkilenen satir sayisi: " + row);
+        assertEquals(row, 1);
+
+
+
+    }
+
+
+
 
 
 

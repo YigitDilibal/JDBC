@@ -35,7 +35,10 @@ select distinct user_id from deposits WHERE amount between 100 AND 500;
 select name from cron_schedules limit 2;
 
 
-UPDATE users set mobile = 1234 where username like '%e_';]]></console>
+UPDATE users set mobile = 1234 where username like '%e_';
+
+insert into device_tokens (id, user_id,is_app, token)values (20, 7, 55,'token153')
+select * from device_tokens;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -50,6 +53,7 @@ UPDATE users set mobile = 1234 where username like '%e_';]]></console>
     <connection id="13ff703b-3ec1-47fa-9f68-b5c48496e5cb" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="13ff703b-3ec1-47fa-9f68-b5c48496e5cb" dataset="u201212290_qaloantec.device_tokens" active-filter-id="" />
     <filter-actions connection-id="13ff703b-3ec1-47fa-9f68-b5c48496e5cb" dataset="u201212290_qaloantec.users" active-filter-id="74d282a2-b1d7-422e-b9aa-7ab3b77c747b">
       <filter id="74d282a2-b1d7-422e-b9aa-7ab3b77c747b" name="first_filter" temporary="false" custom-name="true" type="basic" join-type="AND">
         <condition column="firstname" operator="=" value="Elf" active="true" />
