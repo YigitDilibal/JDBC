@@ -18,13 +18,14 @@ Feature:
     # Database icindeki "cron_schedules" tablosunda ilk 2 kaydin
     # "name" bilgisini dogrulayiniz.
 
+  @cron_schedules
     Scenario: cron_schedules tablosundan name bilgisi dogrulama
 
 
       * Database ile baglanti kurulur.
       * cron_schedules SQL Query'si hazirlanir.
       * cron_schedules Databaseden sonuclar dogrulanir.
-      * Database baglantisi kapatilir.
+      # * Database baglantisi kapatilir.
 
 
 

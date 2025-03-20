@@ -19,6 +19,8 @@ public class StepDefinition {
     ResultSet resultSet;
     QueryManage queryManage = new QueryManage();
     String Query;
+    PreparedStatement preparedStatement;
+    int row;
 
 
     @Given("Database ile baglanti kurulur.")
@@ -85,9 +87,62 @@ public class StepDefinition {
 
     }
     @Given("cron_schedules Databaseden sonuclar dogrulanir.")
-    public void cron_schedules_databaseden_sonuclar_dogrulanir() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void cron_schedules_databaseden_sonuclar_dogrulanir() throws SQLException {
+
+        List<String> expectedResultList = new ArrayList<>();
+        expectedResultList.add("5 Minutes");
+        expectedResultList.add("10 Minutes");
+
+        List<String> actualResultList = new ArrayList<>();
+
+        while (resultSet.next()){
+            actualResultList.add(resultSet.getString("name"));
+        }
+
+    }
+
+
+//------------------------------
+
+
+    @Given("Database baglantisi olusturulur.")
+    public void database_baglantisi_olusturulur() {
+
+        JDBCReusableMethods.createConnection();
+    }
+
+
+    @Given("\\(users) SQL Query'si hazirlanir ve calistirilir.")
+    public void users_sql_query_si_hazirlanir_ve_calistirilir() throws SQLException {
+
+        Query = queryManage.getUsersUpdateQuery();
+        preparedStatement = JDBCReusableMethods.getConnection().prepareStatement(Query);
+
+
+        //  UPDATE users SET mobile = ? WHERE username like ?;
+
+        preparedStatement.setString(1, "77777");
+        preparedStatement.setString(2, "%e_");
+
+        row = preparedStatement.executeUpdate();
+
+    }
+
+
+    @Given("\\(users) sonuclar islenir")
+    public void users_sonuclar_islenir() {
+
+        System.out.println("etkilenen satir sayisi: " + row);
+        assertEquals(row, 5);
+
+    }
+
+
+    @Given("\\(users) database baglantisi sonlandirilir.")
+    public void users_database_baglantisi_sonlandirilir() {
+
+        JDBCReusableMethods.closeConnection();
+
     }
 
 

@@ -32,7 +32,10 @@ select * from deposits;
 
 select distinct user_id from deposits WHERE amount between 100 AND 500;
 
-select name from cron_schedules limit 2;]]></console>
+select name from cron_schedules limit 2;
+
+
+UPDATE users set mobile = 1234 where username like '%e_';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -41,7 +44,6 @@ select name from cron_schedules limit 2;]]></console>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
       <object connection-id="13ff703b-3ec1-47fa-9f68-b5c48496e5cb" object-ref="consoles/JDBC_first" />
-      <object connection-id="13ff703b-3ec1-47fa-9f68-b5c48496e5cb" object-ref="schemas/u201212290_qaloantec/tables/users" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
